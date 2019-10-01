@@ -69,6 +69,11 @@ def dog_update(dog_id):
         {'$set': updated_dog})
     return redirect(url_for('dog_show', dog_id=dog_id))
 
+@app.route('/buy/<dog_id>/delete', methods=['POST'])
+def dog_delete(dog_id):
+    """Delete one dog."""
+    doginfo.delete_one({'_id': ObjectId(dog_id)})
+    return redirect(url_for('buy_dogs'))
 
 if __name__ == '__main__':
     app.run(debug=True)
