@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Dogs for sale!</h1>
+    {% for dog in doginfo %}
+        <h2>{{ dog.breed }}</h2>
+        <small>{{ dog.age }}</small>
+    {% endfor %}
+{% endblock %}

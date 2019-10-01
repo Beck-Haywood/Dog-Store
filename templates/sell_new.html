@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/'>
+    <fieldset>
+    <legend>Sell a poodle!</legend>
+    <!-- BREED -->
+    <p>
+        <label for='breed'>Breed</label><br>
+        <input type='text' name='title' />
+    </p>
+    <p>
+        <label for='description'>Description</label><br>
+        <input type='text' name='description' />
+    </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save</button>
+    </p>
+</form>
+{% endblock %}

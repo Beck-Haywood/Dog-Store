@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "/Users/beckhaywood/dev/repos/poodle-website/env/bin/python3"
+    "python.pythonPath": "/Users/beckhaywood/dev/repos/poodle-website/help/bin/python3.7",
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": true,
+    "python.linting.enabled": true
 }
