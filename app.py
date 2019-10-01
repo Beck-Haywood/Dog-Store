@@ -51,6 +51,24 @@ def dog_show(dog_id):
     dog = doginfo.find_one({'_id': ObjectId(dog_id)})
     return render_template('dog_show.html', dog=dog)
 
+@app.route('/buy/<dog_id>/edit')
+def dog_edit(dog_id):
+    """Show the edit form for a dog."""
+    dog = doginfo.find_one({'_id': ObjectId(dog_id)})
+    return render_template('dog_edit.html', dog=dog)
+
+@app.route('/buy/<dog_id>', methods=['POST'])
+def dog_update(dog_id):
+    """Submit an edited dog."""
+    updated_dog = {
+        'breed': request.form.get('breed'),
+        'description': request.form.get('description'),
+    }
+    doginfo.update_one(
+        {'_id': ObjectId(dog_id)},
+        {'$set': updated_dog})
+    return redirect(url_for('dog_show', dog_id=dog_id))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href='/buy'>Back to the other dogs!</a>
+
 <h1>{{ dog.breed }}</h1>
 <h2>{{ dog.description }}</h2>
+
+<p><a href='/buy/{{ dog._id }}/edit'>Edit</a></p>
+
 {% endblock %}

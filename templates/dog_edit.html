@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/buy/{{dog._id}}'>
+    <fieldset>
+        <legend>Edit post!</legend>
+        <!-- TITLE -->
+        <p>
+            <label for='dog-breed'>Breed</label><br>
+            <input id='dog-breed' type='text' name='breed' value='{{ dog.breed }}'/>
+        </p>
+
+        <!-- DESCRIPTION -->
+        <p>
+            <label for='description'>Description</label><br>
+            <input id='description' type='text' name='description' value='{{ dog.description }}' />
+        </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save</button>
+    </p>
+</form>
+{% endblock %}
