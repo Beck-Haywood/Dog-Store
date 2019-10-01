@@ -38,13 +38,18 @@ def dog_submit():
 @app.route('/sell', methods=['POST'])
 def insert_dog_data():
     """Submit a new dog."""
-    doginfo = {
+    doginfos = {
         'breed': request.form.get('breed'),
         'description': request.form.get('description')
     }
     #doginfo_id = doginfo.insert_one(doginfo).inserted_id
-    doginfo.insert_one(doginfo)
+    doginfo.insert_one(doginfos)
     return redirect(url_for('buy_dogs'))
+@app.route('/buy/<dog_id>')
+def dog_show(dog_id):
+    """Show a single dog."""
+    dog = doginfo.find_one({'_id': ObjectId(dog_id)})
+    return render_template('dog_show.html', dog=dog)
 
 
 if __name__ == '__main__':

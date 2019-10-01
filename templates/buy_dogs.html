@@ -4,7 +4,7 @@
 
     <h1>Dogs for sale!</h1>
     {% for dog in doginfo %}
-        <h2>{{ dog.breed }}</h2>
-        <small>{{ dog.age }}</small>
+        <h2><a href='/buy/{{ dog._id }}'>{{ dog.breed }}</a></h2> 
+        <small>{{ dog.description }}</small>
     {% endfor %}
 {% endblock %}
