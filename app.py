@@ -18,10 +18,12 @@ app = Flask(__name__)
 def sell_dogs():
     """Show all dogs for sale."""
     return render_template('sell_dogs.html', doginfo=doginfo.find())
+
 @app.route('/buy')
 def buy_dogs():
     """Show all dogs for sale."""
     return render_template('buy_dogs.html', doginfo=doginfo.find())
+
 @app.route('/sell')
 def sell_new():
     """Sell a new dog."""
@@ -31,16 +33,17 @@ def sell_new():
 def dog_submit():
     """Sell a new dog."""
     print(request.form.to_dict())
-    return redirect(url_for('sell_new.html'))
+    return redirect(url_for('sell_new'))
 
 @app.route('/sell', methods=['POST'])
-def playlists_submit():
+def insert_dog_data():
     """Submit a new dog."""
     doginfo = {
         'breed': request.form.get('breed'),
         'description': request.form.get('description')
     }
-    doginfo_id = doginfo.insert_one(doginfo).inserted_id
+    #doginfo_id = doginfo.insert_one(doginfo).inserted_id
+    doginfo.insert_one(doginfo)
     return redirect(url_for('buy_dogs'))
 
 
