@@ -4,8 +4,10 @@
 <a href='/'>Back to the homepage!</a>
 
     <h1>Dogs for sale!</h1>
+    
     {% for dog in doginfo %}
         <h2><a href='/buy/{{ dog._id }}'>{{ dog.breed }}</a></h2> 
-        <small>{{ dog.description }}</small>
+        <p>Description: {{ dog.description }}</p>
+        <p>Location: {{ dog.location }}</p>
     {% endfor %}
 {% endblock %}

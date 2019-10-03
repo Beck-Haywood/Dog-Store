@@ -7,13 +7,14 @@ from flask_jwt_extended import (create_access_token)
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import os
+import jsonify
 
-host = os.environ.get('MONGODB_URI', 'mongodb://<heroku_h8zw53pl>:<bghbgh123->@ds229118.mlab.com:29118/heroku_h8zw53pl')
-client = MongoClient(host=f'{host}?retryWrites=false')
-db = client.get_default_database()
+#host = os.environ.get('MONGODB_URI', 'mongodb://<heroku_h8zw53pl>:<bghbgh123->@ds229118.mlab.com:29118/heroku_h8zw53pl')
+#client = MongoClient(host=f'{host}?retryWrites=false')
+#db = client.get_default_database()
 
-#client = MongoClient()
-#db = client.PoodleWebsite
+client = MongoClient()
+db = client.PoodleWebsite
 doginfo = db.doginfo
 
 app = Flask(__name__)
@@ -32,11 +33,17 @@ CORS(app)
 #def index():
 #    """Return homepage."""
 #    return render_template('home.html', msg='Homepage')
-'''@app.route('/users/register', methods=['POST'])
-def register():
+@app.route('/users/register', methods=["GET","POST"])
+def register(methods=["GET","POST"]):
     users = mongo.db.users
-    email = request.get_json()['email']
+    test= users.find()
+    print(test)
+    # print(f'User: {users}')
+    # request.get_json(force=True)
+    email = request.get_json(force=True)['email']
+    print(f'Email is: {email}')
     password = bcrypt.generate_password_hash(request.get_json()['password'].decode('utf-8'))
+    print(f'Password is: {password}')
 
     user_id = users.insert({
     'email': email,
@@ -45,11 +52,12 @@ def register():
 
     new_user = users.find_one({'_id' : user_id})
     result = {'email' : new+user['email'] + ' registered'}
-    return jsonift({'result' : result})
+    print(f"Result is: {result}")
+    return jsonify({'result' : result})
     #return render_template('register_login.html' password=password, email=email, result=result)
 
-@app.route('/users/login', methods=['POST'])
-def login():
+@app.route('/users/login')
+def login(methods=["GET","POST"]):
     users = mongo.db.users
     email = request.get_json()['email']
     password = requests.get_json()['password']
@@ -69,7 +77,7 @@ def login():
         result = jsonify({"result":"no results found"})
     return result
     #return render_template('register_login.html' password=password, email=email, result=result)
-'''
+
 @app.route('/')
 def sell_dogs():
     """Show all dogs for sale."""
@@ -78,6 +86,7 @@ def sell_dogs():
 @app.route('/buy')
 def buy_dogs():
     """Show all dogs for sale."""
+    # Run authenication step
     return render_template('buy_dogs.html', doginfo=doginfo.find())
 
 @app.route('/sell')
@@ -96,7 +105,9 @@ def insert_dog_data():
     """Submit a new dog."""
     doginfos = {
         'breed': request.form.get('breed'),
-        'description': request.form.get('description')
+        'description': request.form.get('description'),
+        'picture': request.form.get('picture'),
+        'location': request.form.get('location')
     }
     #doginfo_id = doginfo.insert_one(doginfo).inserted_id
     doginfo.insert_one(doginfos)
@@ -119,6 +130,8 @@ def dog_update(dog_id):
     updated_dog = {
         'breed': request.form.get('breed'),
         'description': request.form.get('description'),
+        'picture': request.form.get('picture'),
+        'location': request.form.get('location')
     }
     doginfo.update_one(
         {'_id': ObjectId(dog_id)},
@@ -131,8 +144,8 @@ def dog_delete(dog_id):
     doginfo.delete_one({'_id': ObjectId(dog_id)})
     return redirect(url_for('buy_dogs'))
 
-#if __name__ == '__main__':
-#    app.run(debug=True)
-
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    app.run(debug=True)
+
+#if __name__ == '__main__':
+#    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
