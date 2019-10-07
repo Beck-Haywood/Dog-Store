@@ -14,7 +14,7 @@ import jsonify
 #db = client.get_default_database()
 
 client = MongoClient()
-db = client.PoodleWebsite
+db = client.DogWebsite #was Poodle
 doginfo = db.doginfo
 
 app = Flask(__name__)
