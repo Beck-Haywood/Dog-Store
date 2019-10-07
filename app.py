@@ -97,6 +97,7 @@ def index():
         print(dogs)
     else:
         dogs = "https://www.pexels.com/photo/adorable-animal-breed-canine-356378/"
+
     return render_template('index.html', doginfo=doginfo.find(), dogs = dogs)
 
 
