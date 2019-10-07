@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, json
 from pymongo import MongoClient
+import requests
+import json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 #from flask_jwt_extended import JWTManager
@@ -80,9 +82,22 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def sell_dogs():
+def index():
     """Show all dogs for sale."""
-    return render_template('sell_dogs.html', doginfo=doginfo.find())
+    lmt = 4
+    query = request.args.get('query')
+    params = {
+    "q": query,
+    "limit": lmt
+    }
+    r = requests.get("https://dog.ceo/api/breed/{}/images/random/{}".format(params["q"], params["limit"]))
+
+    if r.status_code == 200:
+        dogs = json.loads(r.content)['message']
+        print(dogs)
+    else:
+        dogs = "https://www.pexels.com/photo/adorable-animal-breed-canine-356378/"
+    return render_template('index.html', doginfo=doginfo.find(), dogs = dogs)
 
 
 @app.route('/buy')

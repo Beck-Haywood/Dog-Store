@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
-<h1>Dogs!</h1>
 
 {% block content %}
-{% end block %}
+<h1 class="text-center">Dog Store!</h1>
 
-
-
-
+<h3 class="text-center">Find dogs for sale in your area!</h3>
+<img src="/static/image_from_ios.jpg" height="500" width="400"/>
+<img src="/static/image_from_ios-1.jpg" height="500" width="400"/>
+<div class = "search-box">
+    <form action = '/'>
+        <input class="search-txt" name="query" type="query" placeholder="Type to Search for Dogs"/>
+        <a class= "search-btn" href="#">
+            <button input class="search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+<div class="grid">
+    {% for dog in dogs %}
+        {% include  'dog.html' %}
+    {% endfor %}
+</div>
+{% endblock %}
