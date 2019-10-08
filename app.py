@@ -7,12 +7,12 @@ from bson.objectid import ObjectId
 import os
 
 
-# host = os.environ.get('MONGODB_URI', 'mongodb://<heroku_h8zw53pl>:<bghbgh123->@ds229118.mlab.com:29118/heroku_h8zw53pl')
-# mclient = MongoClient(host=f'{host}?retryWrites=false')
-# db = client.get_default_database()
+host = os.environ.get('MONGODB_URI', 'mongodb://<heroku_6kt9wvpl>:<bghbgh123->@ds229118.mlab.com:29118/heroku_h8zw53pl')
+mclient = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
 
 client = MongoClient()
-db = client.DogWebsite  # was Poodle
+#db = client.DogWebsite  # was Poodle
 doginfo = db.doginfo
 
 app = Flask(__name__)
@@ -101,8 +101,8 @@ def dog_delete(dog_id):
     doginfo.delete_one({'_id': ObjectId(dog_id)})
     return redirect(url_for('buy_dogs'))
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+ #   app.run(debug=True)
 
-# if __name__ == '__main__':
-#    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+if __name__ == '__main__':
+   app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
