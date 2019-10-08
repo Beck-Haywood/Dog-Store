@@ -7,13 +7,37 @@
 <!--<img src="/static/image_from_ios.jpg" height="500" width="400"/>
 <img src="/static/image_from_ios-1.jpg" height="500" width="400"/>
 -->
-<div class = "search-box">
+
+<!-- <div class = "search-box">
     <form action = '/'>
         <input class="search-txt" name="query" type="query" placeholder="Type to Search for Dogs"/>
         <a class= "search-btn" href="#">
             <button input class="search-btn" type="submit">
                 <i class="fas fa-search"></i>
+            </button> -->
+        
+    <!--    <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
             </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" name="query" value="poodle">poodle</a>
+              <a class="dropdown-item">hound</a>
+            </div>
+            <option ></option>
+          </div> -->
+    
+            <form action='/' method="POST">
+                <select name="query">
+                    {% for breed in breeds %}
+                        <option name='{{breed}}' value='{{breed}}' >{{breed}}</option>
+                    {% endfor %}
+                    
+                  </select>
+                  <input type="submit" value="Submit">
+            </form>
+            
+
 <div class="grid">
     {% for dog in dogs %}
         {% include  'dog.html' %}

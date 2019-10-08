@@ -81,24 +81,25 @@ app = Flask(__name__)
 #     # return render_template('register_login.html' password=password, email=email, result=result)
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
     """Show all dogs for sale."""
     lmt = 4
-    query = request.args.get('query')
+    query = request.form.get('query')
     params = {
     "q": query,
     "limit": lmt
     }
     r = requests.get("https://dog.ceo/api/breed/{}/images/random/{}".format(params["q"], params["limit"]))
-
+    print(query)
     if r.status_code == 200:
         dogs = json.loads(r.content)['message']
-        print(dogs)
+        #print(dogs)
     else:
-        dogs = "https://www.pexels.com/photo/adorable-animal-breed-canine-356378/"
-
-    return render_template('index.html', doginfo=doginfo.find(), dogs = dogs)
+        dogs = ""
+    b = requests.get("https://dog.ceo/api/breeds/list/all")
+    breeds = json.loads(b.content)['message']
+    return render_template('index.html', doginfo=doginfo.find(), dogs = dogs, breeds = breeds)
 
 
 @app.route('/buy')
