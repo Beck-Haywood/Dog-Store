@@ -5,11 +5,17 @@
         <title>Dog Store!</title>
         <!-- Latest compiled and minified CSS -->
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">-->
+        <link rel="stylesheet" href="/static/styles.css" />
+
+
+        <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">-->
+
     </head>
     <body>
         {% include 'partials/navbar.html' %}
+        {% include 'partials/background.html' %}
         {% block content %}
-    
     
         {% endblock %}
         <!-- Latest compiled and minified JavaScript -->

@@ -6,6 +6,8 @@
 <h3>Breed: {{ dog.breed }}</h1>
 <h3>Description: {{ dog.description }}</h2>
 <h3>Location: {{ dog.location }}</h2>
+<h3>Contact information: {{ dog.contact }}</h2>
+
 <p><a href='/buy/{{ dog._id }}/edit'>Edit</a></p>
 <!-- Delete button -->
 <p><form method='POST' action='/buy/{{ dog._id }}/delete'>

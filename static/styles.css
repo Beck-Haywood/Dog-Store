@@ -1,0 +1,25 @@
+
+/*.background {
+    background-image: url("72026718_large.jpg");
+    background-color: #cccccc;
+    background-size:100% auto;
+    background-size:cover;
+    background-repeat: no-repeat;
+   }*/
+.navbar-nav > li{
+    padding-left:80px;
+    padding-right:80px;
+}
+.dropdown {
+    color: purple;
+    background-color: #82caff;
+}
+
+.grid{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    }
+    
