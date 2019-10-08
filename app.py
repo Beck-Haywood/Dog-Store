@@ -8,10 +8,10 @@ import os
 
 
 host = os.environ.get('MONGODB_URI', 'mongodb://<heroku_6kt9wvpl>:<bghbgh123->@ds229118.mlab.com:29118/heroku_h8zw53pl')
-mclient = MongoClient(host=f'{host}?retryWrites=false')
+client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
-client = MongoClient()
+#client = MongoClient()
 #db = client.DogWebsite  # was Poodle
 doginfo = db.doginfo
 
