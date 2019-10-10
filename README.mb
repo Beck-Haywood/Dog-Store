@@ -1,0 +1,4 @@
+This web app is for selling dogs 
+It also implements a The DOG CEO api
+It allows users to search for dogs breeds they have a interest in
+This project is pushed to heroku: https://dog-store-bh.herokuapp.com/

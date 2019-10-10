@@ -101,8 +101,5 @@ def dog_delete(dog_id):
     doginfo.delete_one({'_id': ObjectId(dog_id)})
     return redirect(url_for('buy_dogs'))
 
-#if __name__ == '__main__':
- #   app.run(debug=True)
-
 if __name__ == '__main__':
    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
